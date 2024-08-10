@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dray Source</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+background-color: #fd1d1d; /* Matches one of the gradient colors */
+    color: #fff;
+   background-image: url(home-bak.jpg);
+
+            background-repeat: repeat;
+            background-position: center;
+background-size:cover ;
+  }
+
+
+
+.logo-img{
+ height: 6vh;
+          margin-left: -50px;
+
+
+}
+  nav .comapny { c
+    opacity: 100%;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 4px black;
+margin-left: -40px;
+margin-top: 0.7vh;
+  }
+  .navclass {
+    display: flex;
+    align-items: center;
+    background-size: auto;
+    height: 10vh;
+    box-shadow: 4px 0 10px rgb(0, 0, 0);
+position: sticky;
+top: 0;
+  backdrop-filter: blur(2px);
+z-index:1001;
+  }
+
+
+git remote add origin https://github.com/alifchisty/mouth-wash.git
+
+
+  .details {
+    font-size: 0.8rem;
+    color: #fff;
+  }
+
+  .home-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10vh 0;
+    color: #fff;
+    line-height: 30%;
+    text-align: center;
+
+  }
+
+  .arow:hover {
+    color: #ffdb00;
+  }
+
+  .opt:hover {
+    color: #ffdb00;
+  }
+
+
+  .invest-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .invest-photo img {
+    width: 70%;
+    border-radius: 6px;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    border: 1px solid;
+    box-shadow: 0 0 10px black;
+    margin-bottom: 2vh;
+    margin-top: 0.5vh;
+  }
+
+
+
+
+
+  /* Container fixed at the bottom */
+  .container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Full width */
+margin-top: 71vh;
+    padding: 0;
+    box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.3);
+    /* Shadow for subtle effect */
+    background-color: #fff;
+    /* Background color */
+    z-index: 1000;
+    /* Ensure it is above other content */
+line-height: 99%;
+  }
+
+  /* Layer within the container for alignment */
+  .container-layer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 7px 0;
+    background-color: #fff;
+    /* Ensure background color matches container */
+  }
+
+  /* Styling for clickable items */
+  .clk {
+    color: black;
+    text-decoration: none;
+    padding: 3px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  i {
+    font-size: 2rem;
+    margin: 0 auto;
+  }
+
+
+
+
+    {
+      {
+       !-- //slide-image --}}
+
+      .slide-container {
+        position: relative;
+        margin: 10px 0px;
+        border: 0.5px solid black;
+      }
+
+      .slide-container img {
+        width: 100%;
+        height: 20vh;
+        display: none;
+      }
+
+      .active img {
+        display: block;
+      }
+
+      .slider-button:hover {
+        box-shadow: 3px 0px 9px #00bbf0;
+        color: #00bbf0;
+      }
+
+      .slider-button {
+        background: rgba(255, 255, 255, 0.55);
+        cursor: pointer;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px;
+        box-shadow: 2px 2px 10px rgb(0 0 0 / 40%);
+        font-size: 25px;
+        position: absolute;
+        z-index: 10;
+        top: 23%;
+        font-weight: 600;
+        transition: 0.6s
+      }
+
+      #button-prev {
+        left: 10px;
+
+      }
+
+      #button-next {
+        right: 10px;
+      }
+
+      .slider-button:hover {
+        background-color: #717171;
+      }
+
+      .dots-container {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+      }
+
+      .dot {
+        cursor: pointer;
+        height: 10px;
+        width: 8px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s;
+      }
+
+      .dot:hover {
+        background-color: #b75d5d;
+      }
+
+      .dots-container .activeDot {
+        background-color: rgb(13, 137, 252);
+      }
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .slide-container {
+    margin: 5px 0;
+  }
+
+  .slider-button {
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+  }
+
+  .dot {
+    height: 8px;
+    width: 8px;
+  }
+}
+        {
+          {
+           !-- //slide-image --}}
+</style>
+
+<body>
+  <nav class="navclass">
+    <div class="logo">
+      {{!-- <i class='bx bxs-bookmark-star' style='color:#ffdb00'></i> --}}
+                <img class="logo-img" src="logo2.png" alt="" srcset="">
+    </div>
+    <h1 class="comapny">SuB Marine</h1>
+  </nav>
+  <main class="home-main">
+    <div class="home-container">
+      <a class="arow" href="/withdraw">
+        <div class="arow details">
+          <i class='bx bx-money-withdraw'></i>
+        </div><br>
+        <div class="opt details">
+          Withdraw
+        </div>
+      </a>
+      <a class="arow" href="/Income">
+        <div class="arow details">
+      <i class='bx bx-coin-stack' style='color:#f9f9f9'  ></i> 
+        </div><br>
+        <div class="opt details">
+          Income
+        </div>
+      </a>
+      <a class="arow" href="/usdt">
+        <div class="arow details">
+         <i class='bx bxl-gitlab' style='color:#faf6f6'  ></i> 
+
+        </div><br>
+        <div class="opt details">
+          USDT
+        </div>
+      </a>
+      <a class="arow" href="">
+        <div class="arow details">
+          <i class='bx bx-book-bookmark' style='color:#ffffff'  ></i>
+        </div><br>
+        <div class="opt details">
+          Info
+        </div>
+      </a>
+
+    </div>
+  </main>
+  {{!-- //slide-image --}}
+  <div class="slide-container">
+    <div class="slide active">
+      <img src="https://img.freepik.com/premium-photo/dollars-hd-wallpaper-photographic-image_993236-3254.jpg?w=740"
+        width="100%" alt="" />
+    </div>
+    <div class="slide">
+      <img
+        src="https://img.freepik.com/premium-photo/bitcoins-3d-render-isolated-cryptocurrency-dark-background-studio-photo-realistic-golden-coins-bounc_978921-1239.jpg?w=740"
+        width="100%" alt="" />
+    </div>
+    <div class="slide">
+      <img src="https://img.freepik.com/premium-photo/honey-jar-hd-wallpaper-photographic-image_993236-2398.jpg?w=740"
+        width="100%" alt="" />
+    </div>
+    <div class="slide">
+      <img src="https://img.freepik.com/premium-photo/coins-hd-wallpaper-photographic-image_993236-2975.jpg?w=740"
+        width="100%" alt="" />
+    </div>
+    <div id="button-prev" class="slider-button">
+     <i class='bx bx-chevrons-left' style='color:#ffffff'></i> </div>
+        <div id="button-next" class="slider-button"> <i class='bx bx-chevrons-right' style='color:#ffffff'></i> </div>
+        <div class="dots-container">
+          <div class="dot activeDot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+    </div>
+    {{!-- //slide-image --}}
+    <div class="invest-container">
+      <p class="policy">1. Historical Returns
+        Investing in the U.S. stock market has historically provided high returns compared to other investment options.
+        Over the long term, the stock market tends to grow, with the S&P 500 averaging about 10% annual returns. This
+        growth has helped investors build wealth and achieve their financial goals. By investing in the stock market,
+        you can take advantage of compound interest, which can significantly increase your investment's value over time.
+        Remember, while past performance is not indicative of future results, the historical trend offers a promising
+        outlook.</p>
+      <div class="invest-photo">
+        <a
+          href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+            src="https://img.freepik.com/premium-photo/person-s-hand-investing-money-buying-house_23-2147919251.jpg?w=740"
+            alt="" srcset=""></a>
+      </div>
+
+
+      <p class="policy">2. Diversification
+        Diversifying your investments across different stocks can reduce risk and increase the potential for returns. By
+        spreading your money across various industries and companies, you minimize the impact of poor performance by any
+        single stock. Diversification can be achieved easily through index funds and exchange-traded funds (ETFs), which
+        track a broad range of stocks. This approach helps in balancing risk and reward, providing a more stable
+        investment experience. It's a key strategy for long-term financial success and stabilityt</p>
+      <div class="invest-photo">
+        <a
+          href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+            src="https://img.freepik.com/premium-photo/gold-coin-stack-hd-wallpaper-photographic-image_993236-8537.jpg?w=900"
+            alt="" srcset=""></a>
+      </div>
+
+
+      <p class="policy">3. Dividend Income
+        Many U.S. stocks pay dividends, which provide a steady income stream in addition to potential capital gains.
+        Dividends are typically paid quarterly and can be reinvested to buy more shares, enhancing your overall returns.
+        This reinvestment can significantly boost the growth of your investment portfolio over time. Companies that pay
+        dividends are often financially stable, providing a cushion against market volatility. Dividend investing is an
+        excellent strategy for those seeking regular income and long-term growth</p>
+    </div>
+
+    <div class="invest-photo">
+      <a
+        href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+          src="https://img.freepik.com/premium-photo/crypto-cruncey-hd-wallpaper-photographic-image_993236-4201.jpg?w=900"
+          alt="" srcset=""></a>
+    </div>
+
+
+    <p class="policy">4. The U.S. economy is one of the largest and most robust in the world, driving the growth of its
+      stock market. Investing in U.S. stocks allows you to benefit from the country's economic expansion and innovation.
+      The U.S. market is home to many of the world's leading companies, offering opportunities for substantial growth.
+      By investing in these companies, you can capitalize on advancements in technology, healthcare, and other sectors.
+      Economic growth translates to higher corporate profits and, consequently, higher stock prices</p>
+    <div class="invest-photo">
+      <a
+        href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+          src="https://img.freepik.com/premium-photo/gold-bullion-hd-wallpaper-photographic-image_993236-1706.jpg?w=900"
+          alt="" srcset=""></a>
+    </div>
+
+
+    <p class="policy">5. Liquidity
+      The U.S. stock market is highly liquid, meaning you can buy and sell stocks quickly and easily. This liquidity
+      ensures that you can access your money when needed without significant delays or price changes. High liquidity
+      also means lower transaction costs and better price execution. It provides flexibility, allowing you to adjust
+      your portfolio in response to market conditions. Liquidity is crucial for managing your investments efficiently
+      and taking advantage of market opportunities.</p>
+    <div class="invest-photo">
+      <a
+        href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+          src="https://img.freepik.com/premium-photo/dollars-hd-wallpaper-photographic-image_993236-3254.jpg?w=740"
+          alt="" srcset=""></a>
+    </div>
+
+
+    <p class="policy">6. Transparency and Regulation
+      The U.S. stock market is regulated by the Securities and Exchange Commission (SEC), which ensures transparency and
+      fairness. Companies are required to disclose financial information, enabling investors to make informed decisions.
+      This regulatory environment helps protect investors from fraud and market manipulation. The availability of
+      reliable information enhances market efficiency, leading to better investment outcomes. Transparency and
+      regulation provide a secure investment environment, boosting investor confidence.</p>
+    <div class="invest-photo">
+      <a
+        href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+          src="https://img.freepik.com/premium-photo/gambling-poker-chips-hd-wallpaper-photographic-image_993236-3958.jpg?w=900"
+          alt="" srcset=""></a>
+
+
+    </div>
+
+    <p class="policy">7. Accessibility
+      With the rise of online trading platforms, investing in the U.S. stock market has become more accessible than
+      ever. These platforms offer user-friendly interfaces, low fees, and educational resources to help beginners get
+      started. You can invest in stocks with as little as a few dollars, thanks to fractional shares. Accessibility
+      allows you to start investing early, which is key to building wealth over time. The democratization of stock
+      investing empowers more people to participate in the markett</p>
+    <div class="invest-photo">
+      <a
+        href="https://www.investing.com/markets/united-states?utm_source=google&utm_medium=cpc&utm_campaign=21459743989&utm_content=705305773638&utm_term=dsa-1546555492214_&GL_Ad_ID=705305773638&GL_Campaign_ID=21459743989&ISP=1&npl=1&ppu=9801673&gad_source=1&gclid=CjwKCAjw7s20BhBFEiwABVIMrXj3dlfbBfJKy2EHegKmsYSfhgdkhbhPWkb2jfYgJCPAr7bmmi4_hxoC-_MQAvD_BwE"><img
+          src="https://img.freepik.com/premium-photo/earning-money_993236-1059.jpg?w=900" alt="" srcset=""></a>
+    </div>
+
+
+
+    <p class="policy">8. Tax Advantages
+      Investing in stocks can offer tax advantages, such as lower capital gains tax rates on long-term investments.
+      Holding stocks for more than a year qualifies you for long-term capital gains tax rates, which are generally lower
+      than ordinary income tax rates. Additionally, investing through retirement accounts like IRAs and 401(k)s can
+      provide tax-deferred or tax-free growth. These tax benefits enhance the overall returns on your investments.
+      Understanding and leveraging these advantages can significantly impact your financial success.</p>
+    <div class="invest-photo">
+      <img src="https://img.freepik.com/premium-photo/pile-gold-coins-with-word-euro-top_90446-430.jpg?w=900" alt=""
+        srcset="">
+    </div>
+
+
+    <p class="policy">9. Growth Potential
+      The U.S. stock market includes many growth-oriented companies that have the potential to generate substantial
+      returns. Investing in growth stocks can lead to significant capital appreciation as these companies expand and
+      increase their market share. Growth stocks often come from sectors like technology and healthcare, which are
+      poised for rapid advancements. By identifying and investing in promising growth companies, you can achieve
+      remarkable returns. However, it's essential to balance growth investments with more stable options to manage risk.
+    </p>
+    <div class="invest-photo">
+      <img
+        src="https://img.freepik.com/premium-photo/wealth-building-future-planning-money-saving-fixed-deposits_581634-2499.jpg?w=900"
+        alt="" srcset="">
+    </div>
+
+
+    <p class="policy">Investing in the stock market is one of the most effective ways to build long-term wealth. Through
+      regular investments and the power of compounding, you can grow your wealth significantly over time. Even small,
+      consistent investments can accumulate into substantial amounts. Building wealth through the stock market requires
+      patience, discipline, and a long-term perspective. It's a proven strategy that has helped millions achieve their
+      financial goals and secure their futures.</p>
+    <div class="invest-photo">
+      <img
+        src="https://img.freepik.com/premium-photo/ai-generated-illustration-united-state-currency-dollars-pile-from-packs-money_441362-4329.jpg?w=740"
+        alt="" srcset="" style="margin-bottom: 10vh;">
+    </div>
+ 
+
+
+
+
+
+
+  </div>
+
+  <footer class="container">
+    <nav class="container-layer">
+      <a href="/Home" class="clk"> <i class='bx bxs-home' style='color:#0c0400'></i><br>Home</a>
+      <a href="/Connection" class="clk"><i class='bx bx-sitemap'></i><br>Network</a>
+      <a href="/vip" class="clk vip-link "><i class='bx bxl-sketch' style='color:#0c0c0c'  ></i> <br> Invest</a>
+      <a href="/Mine" class="clk"><i class='bx bxs-user' style='color:#000400'></i><br> Owner</a>
+      <a href="/about" class="clk"><i class='bx bx-shield'></i><br>About</a>
+
+
+
+    </nav>
+  </footer>
+  <script>
+let slides = document.getElementsByClassName("slide");
+let navlinks = document.getElementsByClassName("dot");
+let currentSlide = 0;
+let slideInterval;
+
+// Function to change the slide
+function changeSlide(moveTo) {
+  if (moveTo >= slides.length) {
+    moveTo = 0;
+  }
+  if (moveTo < 0) {
+    moveTo = slides.length - 1;
+  }
+
+  slides[currentSlide].classList.toggle("active");
+  navlinks[currentSlide].classList.toggle("activeDot");
+  slides[moveTo].classList.toggle("active");
+  navlinks[moveTo].classList.toggle("activeDot");
+  currentSlide = moveTo;
+}
+
+// Function to start the auto-slide
+function startSlideInterval() {
+  slideInterval = setInterval(() => {
+    changeSlide(currentSlide + 1);
+  }, 2500);
+}
+
+// Function to stop the auto-slide
+function stopSlideInterval() {
+  clearInterval(slideInterval);
+}
+
+// Function to restart the slide interval after stopping
+function restartSlideInterval() {
+  stopSlideInterval();
+  startSlideInterval();
+}
+
+// Start the slide interval on page load
+startSlideInterval();
+
+// Event listeners for manual controls
+document.getElementById("button-next").addEventListener("click", () => {
+  changeSlide(currentSlide + 1);
+  stopSlideInterval(); // Stop auto-slide on manual navigation
+});
+
+document.getElementById("button-prev").addEventListener("click", () => {
+  changeSlide(currentSlide - 1);
+  stopSlideInterval(); // Stop auto-slide on manual navigation
+});
+
+document.querySelectorAll(".dot").forEach((bullet, bulletIndex) => {
+  bullet.addEventListener("click", () => {
+    if (currentSlide !== bulletIndex) {
+      changeSlide(bulletIndex);
+      stopSlideInterval(); // Stop auto-slide on manual navigation
+    }
+  });
+});
+
+// Stop auto-slide on image click
+document.querySelectorAll(".slide img").forEach((image) => {
+  image.addEventListener("click", () => {
+    stopSlideInterval(); // Stop auto-slide on image click
+  });
+});
+
+// VIP link handler
+document.querySelector('.vip-link').addEventListener('click', (event) => {
+  event.preventDefault();
+
+  const vipuserId = localStorage.getItem('userId');
+  if (vipuserId) {
+    window.location.href = `/vip?vipuserId=${vipuserId}`;
+  } else {
+    alert('Invalid user ID');
+  }
+});
+  </script>
+</body>
+
+</html>

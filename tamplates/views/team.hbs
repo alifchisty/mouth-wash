@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dray Source</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<style>
+*{
+margin: 0;
+padding: 0;
+}
+body{
+height: 100vh;
+display: flex; 
+flex-direction:column;
+background-image:linear-gradient(113.99deg, #2b4da5 6.12%, #1e3a8a 83.22%); 
+color: #fff;
+}
+.team-info{
+color: gold;
+}
+
+.logo img{
+height: 6vh;
+margin-right: 10px;
+}
+.navclass{
+display: flex;
+    align-items: center;
+    background: url(https://img.freepik.com/premium-photo/gold-coin-stack-hd-wallpaper-photographic-image_993236-8537.jpg?w=900) no-repeat center;
+    background-size: auto;
+    height: 10vh;
+    box-shadow: 4px 0 10px rgb(0, 0, 0);
+}
+
+nav .comapny{
+opacity: 100%;
+color: rgb(255, 255, 255);
+text-shadow:  3px 4px black;
+}
+.team-container{
+margin: 7vh auto;
+}
+
+.team-usdt{
+display: flex;
+flex-direction: column;
+margin: 2vh auto;
+line-height: 150%;
+}
+.come{
+}
+#come-usdt{
+
+}
+.main-income{
+width: 35vh;
+height: 35vh;
+background-image:linear-gradient(113.99deg, #1dbdee 6.12%, #fa0255 73.22%); 
+border-radius: 50%;
+margin: 10vh auto;
+
+}
+
+.container{
+margin-top: auto;
+align-items: center;
+
+}
+.container-layer{
+display: flex;
+justify-content: space-around;
+align-items: center;
+background-color: #fff;
+    margin: 0;
+    box-shadow: 3px 0 7px black;
+padding: 7px 0px;
+
+}
+.clk{
+color: black;
+text-decoration: none;
+padding: 3px;
+align-items: center;
+margin: 0 auto;
+}
+i{
+ font-size: 2rem;
+margin: 0 auto;
+}
+
+</style>
+<body>
+    <nav class="navclass">
+<div class="logo">
+{{!-- <i class='bx bxs-bookmark-star' style='color:#ffdb00'  ></i> --}}
+<img src="Screenshot_20240715-000214-removebg-preview.png" alt="" srcset=""></div>
+<h1 class="comapny">Dray Source</h1>
+</nav>
+<p id="reffer:">reffer: <span id="displayUserId">{{userId}}</span>
+        </div></p>
+<div class="team-container">
+<h3 class="team-info">
+USDT-Cent income from patnership$.
+</h3>
+<div class="team-usdt">
+<p class="come"><li>Income:  <span id="come-usdt">0</span></li> </p>
+
+<p class="back"><li>From:  <span id="come-usdt">0</span> </li></p>
+
+</div>
+</div>
+<div class="main-income">
+
+</div>
+<footer class="container">
+        <nav class="container-layer">
+            <a href="/Home" class="clk"> <i class='bx bxs-home' style='color:#0c0400'></i><br>Home</a>
+            <a href="/Connection" class="clk"><i class='bx bx-shape-polygon' style='color:#07a625'></i><br>connection</a>
+            <a href="/vip" class="clk vip-link"><i class='bx bxl-meta' style='color:#f59d08'></i> <br> Vip</a>
+            <a href="/Mine" class="clk"><i class='bx bxs-user' style='color:#000400'></i><br> mine</a>
+            <a href="/about" class="clk"><i class='bx bxs-certification' style='color:#1ebf1e'></i><br>About</a>
+
+
+
+        </nav>
+    </footer>
+{{!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userId = localStorage.getItem('userId');
+
+            if ( userId) {
+               document.getElementById('displayUserId').textContent = userId;
+            } else {
+                alert('User information not found. Please log in again.');
+            }
+
+
+        });
+ 
+</script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userId = localStorage.getItem('userId');
+
+        if (userId) {
+            document.getElementById('displayUserId').textContent = userId;
+        } else {
+            alert('User information not found. Please log in again.');
+        }
+
+        // Add event listener for the VIP link
+        const vipLink = document.querySelector('.vip-link');
+        if (vipLink) {
+            vipLink.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default link behavior
+
+                const vipuserId = localStorage.getItem('userId');
+                if (vipuserId) {
+                    // Redirect to the VIP page with the user ID as a query parameter
+                    window.location.href = `/vip?vipuserId=${vipuserId}`;
+                } else {
+                    alert('Invalid user ID');
+                }
+            });
+        } else {
+            console.error('VIP link element not found.');
+        }
+    });
+</script>
+
+</body>
+</html>

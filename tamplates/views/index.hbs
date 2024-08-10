@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation</title>
+    <style>
+        body {
+            height: 70vh;
+            background-image: url(roapman.jpeg);
+
+            background-repeat: repeat;
+            background-position: center;
+background-size:contain ;
+        }
+
+        .container h3 {
+            color: rgb(238, 255, 0);
+            text-align: center;
+        }
+
+        .first-container {
+            margin: 20vh auto;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(0);
+            color: #fff;
+            width: 40vh;
+           box-shadow: 0px 1px 7px rgb(4, 255, 208); 
+
+        }
+
+        .container {
+            width: 77%;
+            margin: auto;
+        }
+
+        #registrationForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            height: 3vh;
+            background: transparent;
+            outline: none;
+            font-size: 16px;
+            color: gold;
+            border-radius: 12%;
+        }
+
+        button {
+            color: #fff;
+            background-color: #163bdf;
+            width: 100%;
+            border: none;
+            border-radius: 7px;
+            height: 5.5vh;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 1vh;
+            margin-bottom: 2vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="first-container">
+        <div class="container">
+            <h3>Sub-Marine</h3>
+            <form id="registrationForm" action="/register" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+
+                <button type="submit">Create Account</button>
+                <br><a href="/login" style="margin-bottom:5px; color:#fff; text-align:center;">Already have an account?</a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

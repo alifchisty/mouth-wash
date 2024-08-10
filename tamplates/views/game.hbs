@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub Marine</title>
+</head>
+<style>
+body{
+            background-color: #1c1f24;
+width: 30vh;
+}
+.container{
+height: 400px;
+width: 400px;
+position: relative;
+margin: 10vh;
+
+}
+.sun{
+width: 100px;
+height: 100px;
+background-color: yellow;
+border-radius: 50%;
+box-shadow: 0 0 30px #fff;
+position: absolute;
+top: 150px;
+left: 150px;
+}
+.globe.earth{
+background-color: aqua;
+height: 30px;
+right: 28px;
+top: 28px;
+width: 30px;
+}
+.globe.moon{
+width: 12px;
+height: 12px;
+background-color: #fff;
+right: 2px;
+top: 8px;
+}
+.globe{
+border-radius: 50%;
+position: absolute;
+}
+.orbit.earth{
+position: relative;
+animation: orbit 3.5s linear infinite;
+height: 300px;
+left: 50px;
+top: 50px;
+width: 300px;
+}
+.orbit.moon{
+animation: orbit 2.7s linear infinite;
+height: 80px;
+left: -25px;
+top: -25px;
+width: 88px;
+
+}
+.orbit{
+position: relative;
+border: solid;
+border-color: #fff transparent transparent transparent;
+border-radius: 50%;
+border-width: 1px 1px 0 0;
+box-sizing: border-box;
+transform: rotate(0deg);
+transform-origin: center;
+}
+@keyframes orbit {
+to{
+transform: rotate(360deg);
+
+}
+}
+</style>
+<body>
+    <div class="container">
+        <div class="sun" id="sun"></div>
+        <div class="orbit earth">
+            <div class="globe earth">
+                <div class="orbit moon">
+<div class="globe moon">
+
+</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
