@@ -50,6 +50,118 @@ _tamplates
       } else {
         alert('Invalid user ID');
       }
+It seems like your Git is configured correctly, but there might have been a connection issue when you tried to push your code. Since you received the message **"Everything up-to-date"**, it means that Git believes all changes have already been pushed. However, you still don't see your project on GitHub, so let’s troubleshoot this.
+
+### **Steps to Troubleshoot:**
+
+1. **Check Your GitHub Repository:**
+   - Make sure you’re looking at the correct repository on GitHub. Go to [https://github.com/alifchisty/mouth-wash](https://github.com/alifchisty/mouth-wash) and check if any files are there.
+Let's keep it super simple! Here's how you can connect GitHub with VS Code and push your project without the `node_modules` folder:
+
+### 1. **Create a GitHub Account (If you don’t have one)**
+   - Go to [github.com](https://github.com) and sign up for a free account.
+
+### 2. **Install Git**
+   - Download and install Git from [git-scm.com](https://git-scm.com/).
+
+### 3. **Open VS Code**
+   - Open your project folder in VS Code.
+
+### 4. **Initialize Git**
+   - In VS Code, open the Terminal (you can press `Ctrl + ` (backtick) to open it).
+   - Type this command and press Enter:
+     ```bash
+     git init
+     ```
+   - This makes your folder a Git repository.
+
+### 5. **Create a `.gitignore` File**
+   - In your project folder, create a new file called `.gitignore`.
+   - Open the file and type:
+     ```plaintext
+     node_modules/
+     ```
+   - This tells Git to ignore the `node_modules` folder.
+
+### 6. **Add Your Files to Git**
+   - In the terminal, type:
+     ```bash
+     git add .
+     ```
+   - This adds all your files to be tracked by Git, except the `node_modules` folder.
+
+### 7. **Commit Your Changes**
+   - In the terminal, type:
+     ```bash
+     git commit -m "First commit"
+     ```
+   - This saves your changes with a message.
+
+### 8. **Connect to GitHub**
+   - Go to GitHub, and click the "+" sign at the top-right, then "New repository."
+   - Give your repository a name and click "Create repository."
+   - You’ll see some instructions. Follow these steps:
+     1. Copy the URL under "…or push an existing repository from the command line."
+     2. In your terminal in VS Code, type:
+        ```bash
+        git remote add origin <URL>
+        ```
+        Replace `<URL>` with the URL you copied.
+
+### 9. **Push Your Project**
+   - In the terminal, type:
+     ```bash
+     git push -u origin master
+     ```
+   - This sends your project to GitHub!
+
+### 10. **Check GitHub**
+   - Go back to GitHub and refresh the page. Your project should be there!
+
+That's it! 🎉
+2. **Verify the Remote URL:**
+   - Run this command in the terminal to check if your Git repository is pointing to the correct GitHub URL:
+     ```bash
+     git remote -v
+     ```
+   - It should show something like:
+     ```
+     origin  https://github.com/alifchisty/mouth-wash.git (fetch)
+     origin  https://github.com/alifchisty/mouth-wash.git (push)
+     ```
+   - If the URL is correct, proceed. If not, you’ll need to fix the remote URL by running:
+     ```bash
+     git remote set-url origin https://github.com/alifchisty/mouth-wash.git
+     ```
+
+3. **Ensure You’re on the Correct Branch:**
+   - Run this command to see what branch you’re on:
+     ```bash
+     git branch
+     ```
+   - If it shows `* main`, then you’re on the correct branch. If not, switch to the main branch by running:
+     ```bash
+     git checkout main
+     ```
+
+4. **Force Push (If Necessary):**
+   - If there’s still no update, you might try force pushing your changes. **Caution**: This should only be used if you are sure it’s necessary, as it can overwrite changes in the remote repository.
+     ```bash
+     git push -u origin main --force
+     ```
+
+5. **Check GitHub Again:**
+   - After doing the above steps, go back to your GitHub repository and refresh the page to see if your files have been uploaded.
+
+### **Possible Connection Issues:**
+The error message **"fatal: An error occurred while sending the request. Could not create SSL/TLS secure channel."** suggests that there was a problem establishing a secure connection. This can happen due to network issues or SSL/TLS configuration problems.
+
+If the problem persists, you might want to:
+- Try pushing your changes from a different network.
+- Update Git to the latest version.
+- Check your system's date and time settings (incorrect date/time can cause SSL/TLS issues).
+
+After trying these steps, your project should appear in your GitHub repository.
 now i want to make the code in such a way that 
 1.when  user fisrt time any package opean (opean for you) click there not go to the income page show a pop message there input type text and buton submit in the input text user submit userID any user other than himself which is already in our databse 
 2. after submit remove the text input and submit button show a succsfully pakage open for foy(for 0.8 sec) style bg color green color black submit-btn a gredian color and in top input text a text "Reffer User id" style color gold

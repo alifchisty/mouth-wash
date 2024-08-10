@@ -49,46 +49,46 @@ app.get('/vip', (req, res) => {
 
 
 app.get('/Home', (req, res) => {
-  res.render('home');
+  res.sendDate('home');
 });
 
 app.get('/index', (req, res) => {
-  res.render('index');
+  res.send('index');
 });
 
 app.get('/Mine', (req, res) => {
-  res.render('mine');
+  res.send('mine');
 });
 app.get('/expe', (req, res) => {
   res.render('expe');
 });
 app.get('/Income', (req, res) => {
-  res.render('income');
+  res.send('income');
 });
 
 app.get('/Connection', (req, res) => {
-  res.render('connection');
+  res.send('connection');
 });
 
 app.get('/About', (req, res) => {
-  res.render('about');
+  res.send('about');
 });
 
 app.get('/withdraw', (req, res) => {
-  res.render('withdraw');
+  res.send('withdraw');
 });
 app.get('/test', (req, res) => {
-  res.render('test');
+  res.send('test');
 });
 
 app.get('/deposit', (req, res) => {
   res.render('deposit');
 });
 app.get('/team', (req, res) => {
-  res.render('team');
+  res.send('team');
 });
 app.get('/usdt', (req, res) => {
-  res.render('usdt');
+  res.send('usdt');
 });
 app.get('/api/checkUserId', async (req, res) => {
     const { userId } = req.query;
@@ -121,7 +121,7 @@ app.get('/api/getCommission', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.render('404');
+  res.send('404');
 });
 app.post('/register', async (req, res) => {
     const { username, email, country, phone, password, confirm_password } = req.body;
