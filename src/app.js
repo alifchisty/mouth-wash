@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const hbs = require(`hbs`)
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 22000;
 const path = require(`path`);
 const bodyParser = require('body-parser');
 require("../src/db/conn");
@@ -28,67 +28,68 @@ hbs.registerPartials(partials_path);
 
 //routing
 app.get (``, (req , res)=>{
-res.render("index")
+res.send("index")
 })
 app.get (`/indexx`, (req , res)=>{
-res.render("indexx")
+res.send("indexx")
 })
 
 app.get (`/login`, (req , res)=>{
-res.render("login")
+res.sendFile(path.join(static_path, 'login.html'))
 })
 
 app.get('/vip', (req, res) => {
-    const vipuserId = req.query.vipuserId;
-    if (!vipuserId) {
-        return res.status(400).send('Invalid user ID');
-    }
-    res.render('vip', { vipuserId });
+  const vipuserId = req.query.vipuserId;
+  if (!vipuserId) {
+    return res.status(400).send('Invalid user ID');
+  }
+  res.sendFile(path.join(static_path, 'vip.html')); // Serve the static VIP page
 });
+
 
 
 
 app.get('/Home', (req, res) => {
-  res.sendDate('home');
-});
+  res.sendFile(path.join(static_path, 'home.html'))
+})
 
 app.get('/index', (req, res) => {
   res.send('index');
 });
 
 app.get('/Mine', (req, res) => {
-  res.send('mine');
-});
+  res.sendFile(path.join(static_path, 'mine.html'))
+})
 app.get('/expe', (req, res) => {
-  res.render('expe');
+  res.sendFile(path.join(static_path, 'expe.html'))
 });
 app.get('/Income', (req, res) => {
-  res.send('income');
+  res.sendFile(path.join(static_path, 'income.html'))
 });
 
 app.get('/Connection', (req, res) => {
-  res.send('connection');
+  res.sendFile(path.join(static_path, 'connection.html'))
 });
 
 app.get('/About', (req, res) => {
-  res.send('about');
+  res.sendFile(path.join(static_path, 'about.html'))
 });
 
 app.get('/withdraw', (req, res) => {
-  res.send('withdraw');
+  res.sendFile(path.join(static_path, 'withdraw.html'))
 });
 app.get('/test', (req, res) => {
-  res.send('test');
+  res.sendFile(path.join(static_path, 'test.html'))
 });
 
 app.get('/deposit', (req, res) => {
-  res.render('deposit');
+  res.sendFile(path.join(static_path, 'deposit.html'))
 });
 app.get('/team', (req, res) => {
-  res.send('team');
+  res.sendFile(path.join(static_path, 'team.html'))
 });
 app.get('/usdt', (req, res) => {
-  res.send('usdt');
+  res.sendFile(path.join(static_path, 'usdt.html'))
 });
 app.get('/api/checkUserId', async (req, res) => {
     const { userId } = req.query;
@@ -121,7 +122,7 @@ app.get('/api/getCommission', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.send('404');
+  res.sendFile(path.join(static_path, '404.html'))
 });
 app.post('/register', async (req, res) => {
     const { username, email, country, phone, password, confirm_password } = req.body;
