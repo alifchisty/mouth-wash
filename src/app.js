@@ -1,12 +1,11 @@
 const express = require('express');
 const app = express();
 const hbs = require(`hbs`)
-const port = process.env.PORT || 22000;
+const port = process.env.PORT || 3000;
 const path = require(`path`);
 const bodyParser = require('body-parser');
 require("../src/db/conn");
 const idgen = require("../src/models/register");
-const User = require("../src/models/usdt");
 
 const DepositRequest = require('../src/models/user');
 const { v4: uuidv4 } = require('uuid');
@@ -147,23 +146,6 @@ app.post('/register', async (req, res) => {
         res.status(500).send('Error registering user');
     }
  });
-// app.post('/login', async (req, res) => {
-//     const { email, password } = req.body;
-
-//     try {
-//         const user = await idgen.findOne({ email, password });
-
-//         if (user) {
-//             const userData = await  idgen.findOne({ userId: user.userId });
-//             const score = userData ? userData.coins : 0; // Retrieve the coins from User schema
-//             res.json({ success: true, username: user.username, userId: user.userId, score });
-//         } else {
-//             res.status(400).json({ success: false, message: 'Invalid email or password' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ success: false, message: 'Error logging in' });
-//     }
-// });
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -171,8 +153,7 @@ app.post('/login', async (req, res) => {
         const user = await idgen.findOne({ email, password });
 
         if (user) {
-            const userData = await idgen.findOne({ userId: user.userId });
-            const score = userData ? userData.coins : 0; // Retrieve the coins from User schema
+            const score = user.score || 0; // Get the user's current score
             res.json({ success: true, username: user.username, userId: user.userId, score });
         } else {
             res.status(400).json({ success: false, message: 'Invalid email or password' });
@@ -181,47 +162,8 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error logging in' });
     }
 });
-// deposit-request endpoint
-// app.post('/deposit-request', async (req, res) => {
-//     const { package, userId } = req.body;
 
-//     try {
-//         let depositRequest = await DepositRequest.findOne({ userId });
 
-//         if (depositRequest) {
-//             // Update existing request
-//             depositRequest.package = package;
-//             depositRequest.requestTime = Date.now(); // Update request time
-
-//             await depositRequest.save();
-//             res.json({ message: 'Deposit request updated successfully' });
-//         } else {
-//             // Create a new deposit request
-//             depositRequest = new DepositRequest({ package, userId });
-//             await depositRequest.save();
-//             res.json({ message: 'Deposit request submitted successfully' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: 'An error occurred while processing your deposit request. Please try again later.' });
-//     }
-// });
-
-// // check-deposit endpoint
-// app.post('/check-deposit', async (req, res) => {
-//     const { userId } = req.body;
-
-//     try {
-//         const depositRequest = await DepositRequest.findOne({ userId });
-
-//         if (depositRequest) {
-//             res.json({ electronic: depositRequest.electronic, score: depositRequest.score });
-//         } else {
-//             res.status(404).json({ error: 'Deposit request not found for this user.' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: 'An error occurred while checking your deposit status. Please try again later.' });
-//     }
-// });
 
 
 
@@ -295,6 +237,8 @@ function getDailyLimit(cost) {
     }
 }
 
+
+
 app.post('/income', async (req, res) => {
     try {
         const { userId, packageCost, income } = req.body;
@@ -303,6 +247,7 @@ app.post('/income', async (req, res) => {
             return res.status(400).json({ error: 'Invalid input data' });
         }
 
+        // Fetch the user based on the userId
         let user = await idgen.findOne({ userId });
 
         if (!user) {
@@ -315,7 +260,6 @@ app.post('/income', async (req, res) => {
         }
 
         const today = new Date().toISOString().slice(0, 10);
-
         let dailyLimitEntry = user.dailyLimit.find(entry => entry.packageCost === packageCost);
 
         if (!dailyLimitEntry) {
@@ -333,21 +277,22 @@ app.post('/income', async (req, res) => {
             return res.status(400).json({ error: 'Daily limit reached' });
         }
 
+        // Update the user's score by adding the income (in full precision)
         user.score += income;
         dailyLimitEntry.count += 1;
 
-        // Handle commission
-       if (user.referredUserId) {
-    let referredUser = await idgen.findOne({ userId: user.referredUserId });
-    if (referredUser) {
-        let commission = income * 0.1; // 10% of income
-        referredUser.score += commission;
-        referredUser.principalAmount += commission; // Store commission amount
-        await referredUser.save();
-    }
-}
+        // Handle commission for referred user
+        if (user.referredUserId) {
+            let referredUser = await idgen.findOne({ userId: user.referredUserId });
+            if (referredUser) {
+                let commission = income * 0.1; // 10% commission
+                referredUser.score += commission;
+                referredUser.principalAmount += commission;
+                await referredUser.save();
+            }
+        }
 
-
+        // Save the updated user data (including the score update)
         await user.save();
         res.json({ userId, score: user.score });
     } catch (error) {
@@ -381,79 +326,41 @@ app.post('/api/setReferral', async (req, res) => {
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
-
-
-
-// app.post('/income', async (req, res) => {
-//     try {
-//         const { userId, packageCost, income } = req.body;
-
-//         if (!userId || isNaN(packageCost) || isNaN(income)) {
-//             return res.status(400).json({ error: 'Invalid input data' });
-//         }
-
-//         let user = await idgen.findOne({ userId });
-
-//         if (!user) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-
-//         // Initialize dailyLimit if it is not already
-//         if (!user.dailyLimit) {
-//             user.dailyLimit = [];
-//         }
-
-//         const today = new Date().toISOString().slice(0, 10);
-
-//         let dailyLimitEntry = user.dailyLimit.find(entry => entry.packageCost === packageCost);
-
-//         if (!dailyLimitEntry) {
-//             dailyLimitEntry = { packageCost, date: today, count: 0 };
-//             user.dailyLimit.push(dailyLimitEntry);
-//         }
-
-//         if (dailyLimitEntry.date !== today) {
-//             dailyLimitEntry.date = today;
-//             dailyLimitEntry.count = 0;
-//         }
-
-//         const dailyLimit = getDailyLimit(packageCost);
-//         if (dailyLimitEntry.count >= dailyLimit) {
-//             return res.status(400).json({ error: 'Daily limit reached' });
-//         }
-
-//         user.score += income;
-//         dailyLimitEntry.count += 1;
-
-//         await user.save();
-//         res.json({ userId, score: user.score });
-//     } catch (error) {
-//         console.error('Error occurred:', error.message);
-//         res.status(500).json({ error: 'Something went wrong' });
-//     }
-// });
 app.post('/api/withdraw', async (req, res) => {
     try {
         const { userId, amount } = req.body;
 
+        // Input validation
         if (!userId || isNaN(amount) || amount <= 0) {
             return res.status(400).json({ error: 'Invalid input data' });
         }
 
+        // Find the user
         let user = await idgen.findOne({ userId });
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
 
+        // Check if the user has sufficient funds
         if (user.score < amount) {
             return res.status(400).json({ error: 'Insufficient funds' });
         }
 
+        // Deduct the amount from user's score
         user.score -= amount;
+
+        // Update total withdrawals and last withdrawal date
         user.withdrawals.totalAmount += amount;
         user.withdrawals.lastWithdrawalDate = new Date();
 
+        // Add new entry to withdrawal history
+        user.withdrawals.history.push({
+            amount: amount,
+            date: new Date() // Current date and time
+        });
+
+        // Save the user record with updated information
         await user.save();
 
         res.json({ message: 'Withdrawal successful', score: user.score });
@@ -462,6 +369,7 @@ app.post('/api/withdraw', async (req, res) => {
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
+
 
 
 app.listen(port, () => {

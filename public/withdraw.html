@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- {{!-- 
 <!DOCTYPE html>
 <html lang="en">
@@ -123,6 +124,8 @@
 </html> --}} -->
 
 
+=======
+>>>>>>> d210dc5ed89dc495a2e0fc0ed356d9301f4fd7de
 
 
 
@@ -321,192 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-<!-- {{!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkbox = document.getElementById('account');
-            const textValue = document.getElementById('send-location');
-            const passwordModal = document.getElementById('password-modal');
-            const passwordInput = document.getElementById('password-input');
-            const passwordSubmit = document.getElementById('password-submit');
-            const passwordMessage = document.getElementById('password-message');
-
-            checkbox.checked = true;
-            textValue.value = "amirican-stock-exchange://ghyeindg4t63hm.accountnumber-89764520982648298";
-
-            let score = parseInt(localStorage.getItem('score')) || 0;
-            let dollars = Math.floor(score / 100);
-            let cents = score % 100;
-            document.getElementById('money').textContent = `USDT-cent: ${dollars}.${cents < 10 ? '0' + cents : cents}`;
-
-            let totalWithdrawn = parseInt(localStorage.getItem('totalWithdrawn')) || 0;
-            document.getElementById('withdraw-all').textContent = `Withdrawn: ${(totalWithdrawn / 100).toFixed(2)} USDT-cent`;
-
-            document.getElementById('withdraw-btn').addEventListener('click', () => {
-                const expectedText = "amirican-stock-exchange://ghyeindg4t63hm.accountnumber-89764520982648298";
-
-                if (!checkbox.checked || textValue.value !== expectedText) {
-                    document.getElementById('message').textContent = "Something is wrong.";
-                    return;
-                }
-
-                let withdrawAmount = parseFloat(document.getElementById('withdraw-amount').value);
-                let withdrawCents = Math.round(withdrawAmount * 100);
-                let totalAmount = score;
-
-                if (isNaN(withdrawCents) || withdrawCents <= 0) {
-                    document.getElementById('message').textContent = "Please enter a valid amount.";
-                    return;
-                }
-
-                if (withdrawCents > totalAmount) {
-                    document.getElementById('message').textContent = "Withdrawal denied: Insufficient funds.";
-                    return;
-                }
-
-                // Show password modal
-                passwordModal.style.display = 'block';
-
-                passwordSubmit.addEventListener('click', async () => {
-                    const enteredPassword = passwordInput.value;
-
-                    if (enteredPassword === '') {
-                        passwordMessage.textContent = "Please enter your password.";
-                        return;
-                    }
-
-                    try {
-                        const response = await fetch('/api/verify-password', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                username: localStorage.getItem('username'), // Assuming username is stored in local storage after login
-                                password: enteredPassword
-                            }),
-                        });
-
-                        const data = await response.json();
-
-                        if (data.success) {
-                            totalAmount -= withdrawCents;
-                            score = totalAmount;
-                            localStorage.setItem('score', score);
-                            dollars = Math.floor(score / 100);
-                            cents = score % 100;
-                            document.getElementById('money').textContent = `USDT-cent: ${dollars}.${cents < 10 ? '0' + cents : cents}`;
-                            document.getElementById('message').textContent = `Withdrawal successful: ${withdrawAmount.toFixed(2)} USDT-cent.`;
-
-                            totalWithdrawn += withdrawCents;
-                            localStorage.setItem('totalWithdrawn', totalWithdrawn);
-                            document.getElementById('withdraw-all').textContent = `Withdrawn: ${(totalWithdrawn / 100).toFixed(2)} USDT-cent`;
-
-                            // Clear and hide the password input field
-                            passwordInput.value = '';
-                            passwordModal.style.display = 'none';
-                        } else {
-                            passwordMessage.textContent = "Invalid password. Please try again.";
-                        }
-                    } catch (error) {
-                        console.error('Error verifying password:', error);
-                        passwordMessage.textContent = "An error occurred. Please try again.";
-                    }
-                });
-            });
-        });
-    </script> --}} -->
-<!-- {{!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const checkbox = document.getElementById('account');
-        const textValue = document.getElementById('send-location');
-        const passwordModal = document.getElementById('password-modal');
-        const passwordInput = document.getElementById('password-input');
-        const passwordSubmit = document.getElementById('password-submit');
-        const passwordMessage = document.getElementById('password-message');
-
-        checkbox.checked = true;
-        textValue.value = "amirican-stock-exchange://ghyeindg4t63hm.accountnumber-89764520982648298";
-
-        let score = parseInt(localStorage.getItem('score')) || 0;
-        let dollars = Math.floor(score / 100);
-        let cents = score % 100;
-        document.getElementById('money').textContent = `USDT-cent: ${dollars}.${cents < 10 ? '0' + cents : cents}`;
-
-        let totalWithdrawn = parseInt(localStorage.getItem('totalWithdrawn')) || 0;
-        document.getElementById('withdraw-all').textContent = `Withdrawn: ${(totalWithdrawn / 100).toFixed(2)} USDT-cent`;
-
-        document.getElementById('withdraw-btn').addEventListener('click', () => {
-            const expectedText = "amirican-stock-exchange://ghyeindg4t63hm.accountnumber-89764520982648298";
-
-            if (!checkbox.checked || textValue.value !== expectedText) {
-                document.getElementById('message').textContent = "Something is wrong.";
-                return;
-            }
-
-            let withdrawAmount = parseFloat(document.getElementById('withdraw-amount').value);
-            let withdrawCents = Math.round(withdrawAmount * 100);
-            let totalAmount = score;
-
-            if (isNaN(withdrawCents) || withdrawCents <= 0) {
-                document.getElementById('message').textContent = "Please enter a valid amount.";
-                return;
-            }
-
-            if (withdrawCents > totalAmount) {
-                document.getElementById('message').textContent = "Withdrawal denied: Insufficient funds.";
-                return;
-            }
-
-            // Show password modal
-            passwordModal.style.display = 'block';
-
-            passwordSubmit.addEventListener('click', async () => {
-                const enteredPassword = passwordInput.value;
-
-                if (enteredPassword === '') {
-                    passwordMessage.textContent = "Please enter your password.";
-                    return;
-                }
-
-                try {
-                    const response = await fetch('/api/verify-password', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            username: localStorage.getItem('username'), // Assuming username is stored in local storage after login
-                            password: enteredPassword
-                        }),
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        totalAmount -= withdrawCents;
-                        score = totalAmount;
-                        localStorage.setItem('score', score);
-                        dollars = Math.floor(score / 100);
-                        cents = score % 100;
-                        document.getElementById('money').textContent = `USDT-cent: ${dollars}.${cents < 10 ? '0' + cents : cents}`;
-                        document.getElementById('message').textContent = `Withdrawal successful: ${withdrawAmount.toFixed(2)} USDT-cent.`;
-
-                        totalWithdrawn += withdrawCents;
-                        localStorage.setItem('totalWithdrawn', totalWithdrawn);
-                        document.getElementById('withdraw-all').textContent = `Withdrawn: ${(totalWithdrawn / 100).toFixed(2)} USDT-cent`;
-
-                        passwordModal.style.display = 'none';
-                    } else {
-                        passwordMessage.textContent = "Invalid password. Please try again.";
-                    }
-                } catch (error) {
-                    console.error('Error verifying password:', error);
-                    passwordMessage.textContent = "An error occurred. Please try again.";
-                }
-            });
-        });
-    });
-</script> --}} -->
 </body>
 </html>
 
