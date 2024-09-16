@@ -17,13 +17,18 @@ const userSchema = new mongoose.Schema({
     ],
     withdrawals: {
         totalAmount: { type: Number, default: 0 },
-        lastWithdrawalDate: { type: Date }
-    },
-    referredUserId: { type: String }, // New field for referral
-    principalAmount: { type: Number, default: 0 } // New field for commission
+        lastWithdrawalDate: { type: Date },
+        history: [
+            {
+                amount: { type: Number, required: true },
+                date: { type: Date, required: true }
+            }
+        ]
+    }, 
+    referredUserId: { type: String },
+    principalAmount: { type: Number, default: 0 }
 });
 
 const idgen = mongoose.model('idgen', userSchema);
 
 module.exports = idgen;
-  
