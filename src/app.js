@@ -65,9 +65,7 @@ app.get('/expe', (req, res) => {
 app.get('/Income', (req, res) => {
   res.sendFile(path.join(static_path, 'income.html'))
 });
-app.get('/new', (req, res) => {
-  res.sendFile(path.join(static_path, 'new.html'))
-});
+
 app.get('/Connection', (req, res) => {
   res.sendFile(path.join(static_path, 'connection.html'))
 });
@@ -239,66 +237,7 @@ function getDailyLimit(cost) {
     }
 }
 
-// app.post('/income', async (req, res) => {
-//     try {
-//         const { userId, packageCost, income } = req.body;
 
-//         if (!userId || isNaN(packageCost) || isNaN(income)) {
-//             return res.status(400).json({ error: 'Invalid input data' });
-//         }
-
-//         let user = await idgen.findOne({ userId });
-
-//         if (!user) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-
-//         // Initialize dailyLimit if it is not already
-//         if (!user.dailyLimit) {
-//             user.dailyLimit = [];
-//         }
-
-//         const today = new Date().toISOString().slice(0, 10);
-
-//         let dailyLimitEntry = user.dailyLimit.find(entry => entry.packageCost === packageCost);
-
-//         if (!dailyLimitEntry) {
-//             dailyLimitEntry = { packageCost, date: today, count: 0 };
-//             user.dailyLimit.push(dailyLimitEntry);
-//         }
-
-//         if (dailyLimitEntry.date !== today) {
-//             dailyLimitEntry.date = today;
-//             dailyLimitEntry.count = 0;
-//         }
-
-//         const dailyLimit = getDailyLimit(packageCost);
-//         if (dailyLimitEntry.count >= dailyLimit) {
-//             return res.status(400).json({ error: 'Daily limit reached' });
-//         }
-
-//         user.score += income;
-//         dailyLimitEntry.count += 1;
-
-//         // Handle commission
-//        if (user.referredUserId) {
-//     let referredUser = await idgen.findOne({ userId: user.referredUserId });
-//     if (referredUser) {
-//         let commission = income * 0.1; // 10% of income
-//         referredUser.score += commission;
-//         referredUser.principalAmount += commission; // Store commission amount
-//         await referredUser.save();
-//     }
-// }
-
-
-//         await user.save();
-//         res.json({ userId, score: user.score });
-//     } catch (error) {
-//         console.error('Error occurred:', error.message);
-//         res.status(500).json({ error: 'Something went wrong' });
-//     }
-// });
 
 app.post('/income', async (req, res) => {
     try {
