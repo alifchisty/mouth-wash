@@ -26,7 +26,7 @@ app.set(`views`, template_path);
 hbs.registerPartials(partials_path);
 
 
-//routing
+//routingg
 app.get (``, (req , res)=>{
 res.send("index")
 })

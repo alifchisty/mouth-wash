@@ -15,7 +15,7 @@ const depositRequestSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid user ID!`
         }
     },
-    electronic: {
+     electronic: {
         type: Number,
         default: 0
     },

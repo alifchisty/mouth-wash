@@ -24,6 +24,5 @@ const userSchema = new mongoose.Schema({
 });
 
 const idgen = mongoose.model('idgen', userSchema);
-
 module.exports = idgen;
   
